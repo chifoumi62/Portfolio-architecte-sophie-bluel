@@ -1,3 +1,8 @@
+import { genererElement } from "./fonction.js";
+//appel de la fonction importer
+
+genererElement();
+
 //creation des boutons de filtres
 
 const boutonTous=document.createElement("button");

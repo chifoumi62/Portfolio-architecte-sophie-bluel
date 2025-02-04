@@ -204,4 +204,8 @@ footer nav ul {
 	color: white;
 	background-color: green;
 }
+figure {
+	display: flex;
+	flex-direction: column;
+}
 
