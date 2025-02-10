@@ -189,7 +189,7 @@ footer nav ul {
 	display: flex;
 	justify-content: center;	
 }
-.btn {
+.btn ,.btn1 ,.btn2 ,.btn3 {
 	border-radius: 20px;
 	border-color: green;
 	color: green;
@@ -200,7 +200,7 @@ footer nav ul {
 	padding-left: 20px;
 
 }
-.btn:hover {
+.btn:hover ,.btn1:hover ,.btn2:hover ,.btn3:hover {
 	color: white;
 	background-color: green;
 }

@@ -1,10 +1,10 @@
-let reponseBody=await fetch(`http://localhost:5678/api/works`);
-let reponse=await reponseBody.json();
+const reponseBody=await fetch(`http://localhost:5678/api/works`);
+const reponse=await reponseBody.json();
 
-export function genererElement () {
+export function genererElement (reponse) {
 
     for (let i = 0; i < reponse.length; i++) {
-        const figure=reponse[i]
+        let figure=reponse[i];
 
         const imageElement=document.createElement("img");
         imageElement.src=figure.imageUrl;
@@ -21,3 +21,5 @@ export function genererElement () {
  
     }
 }
+
+

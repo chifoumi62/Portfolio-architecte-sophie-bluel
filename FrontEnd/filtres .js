@@ -61,5 +61,6 @@ boutonHotelsRestaurants.addEventListener("click",function() {
 });
 
 boutonTous.addEventListener("click",function() {
+    document.querySelector(".gallery").innerHTML="";
     genererElement(reponse);
 });
