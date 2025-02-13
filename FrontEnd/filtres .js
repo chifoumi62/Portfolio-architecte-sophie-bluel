@@ -15,15 +15,15 @@ boutonTous.setAttribute("class","btn");
 
 const boutonObjets=document.createElement("button");
 boutonObjets.innerText="Objets";
-boutonObjets.setAttribute("class","btn1");
+boutonObjets.setAttribute("class","btn");
 
 const boutonAppartements=document.createElement("button");
 boutonAppartements.innerText="Appartements";
-boutonAppartements.setAttribute("class","btn2");
+boutonAppartements.setAttribute("class","btn");
 
 const boutonHotelsRestaurants=document.createElement("button");
 boutonHotelsRestaurants.innerText="Hotels & restaurants";
-boutonHotelsRestaurants.setAttribute("class","btn3");
+boutonHotelsRestaurants.setAttribute("class","btn");
 
 const sectionFiltres=document.querySelector(".filtres");
 sectionFiltres.appendChild(boutonTous);
@@ -64,3 +64,5 @@ boutonTous.addEventListener("click",function() {
     document.querySelector(".gallery").innerHTML="";
     genererElement(reponse);
 });
+
+    

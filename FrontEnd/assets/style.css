@@ -189,7 +189,7 @@ footer nav ul {
 	display: flex;
 	justify-content: center;	
 }
-.btn ,.btn1 ,.btn2 ,.btn3 {
+.btn ,.btnconnect {
 	border-radius: 20px;
 	border-color: green;
 	color: green;
@@ -208,4 +208,65 @@ figure {
 	display: flex;
 	flex-direction: column;
 }
+a {
+	text-decoration: none;
+	color: black;
+}
+
+
+/* style page login */
+
+.body2 {
+	padding: 30px;
+	height: 650px;
+}
+.formlog {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#login h2 {
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+#login a {
+	display: flex;
+	justify-content: center;
+	text-decoration: underline;
+}
+
+.footer2 {
+	margin-top: 250px;
+	display: flex;
+	justify-content: flex-end;
+}
+.blocmail , .blocpassword{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
+
+#mail , #password {
+	height: 30px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.blocmail input , .blocpassword input {
+	width: 300px;
+}
+
+.logout{
+	display: none;
+}
+
+.login{
+	display: block
+}
+
+
 

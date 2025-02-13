@@ -22,4 +22,14 @@ export function genererElement (reponse) {
     }
 }
 
+export function modifIndex () {
+    const nodal=document.querySelector(".nodal");
+    nodal.innerHTML=`<a href="#">projets</a>`
+
+    const logout=document.querySelector(".identification");
+    logout.innerHTML="";
+    logout.innerHTML=`<a href="login.html">logout</a>`;  
+    
+}
+
 
