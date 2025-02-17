@@ -23,13 +23,20 @@ export function genererElement (reponse) {
 }
 
 export function modifIndex () {
-    const nodal=document.querySelector(".nodal");
-    nodal.innerHTML=`<a href="#">projets</a>`
+    const nodal=document.querySelector(".projet");
+    nodal.innerHTML=`<button class=btn_nodal>projets</button>`
 
     const logout=document.querySelector(".identification");
     logout.innerHTML="";
     logout.innerHTML=`<a href="login.html">logout</a>`;  
     
+}
+
+export function openModal () {
+    const modal=document.querySelector(".overlay");
+    modal.style.display="block";
+    const modal_2=document.querySelector(".modal");
+    modal_2.style.display="block";
 }
 
 
