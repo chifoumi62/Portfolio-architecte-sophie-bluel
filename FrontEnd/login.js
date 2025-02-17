@@ -9,8 +9,10 @@ btnConnect.addEventListener("submit", (Event)=>{
     let Email=document.querySelector("#mail").value;
     let Password=document.querySelector("#password").value;
     
-    console.log(Email);
-    console.log(Password);
+    if (Email!=="sophie.bluel@test.tld" || Password!=="S0phie"){
+        const messageErreur= document.querySelector(".error");
+        messageErreur.innerText="Erreur dans le mail ou le mot de passe";
+    }
     
     fetch("http://localhost:5678/api/users/login",{
         method:"POST",
@@ -26,16 +28,28 @@ btnConnect.addEventListener("submit", (Event)=>{
     .then(data=>{
         if(data.token){
             sessionStorage.setItem("token",data.token);
-            window.location.href="index.html";
-            modifIndex();
+            window.location.href="index.html";    
         }
         else{
-            throw new Error("erreur dans mail ou mot de passe");
+            throw new Error("erreur dans mail ou mot de passe");   
         }
     })
     .catch(error=>{
         console.error(error);
     });
-}); 
+    
+});
+
+if(sessionStorage.getItem("token")){
+    modifIndex();
+};
+
+if(sessionStorage.getItem("token")){
+    const deconect=document.querySelector(".identification");
+    deconect.addEventListener("click",()=>{
+        sessionStorage.removeItem("token");
+        window.location.href="login.html";
+    });
+}
 
 

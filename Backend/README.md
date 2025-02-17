@@ -25,7 +25,7 @@ npm start
 |sophie.bluel@test.tld|S0phie|
 
 ## Accéder à Swagger
-
-[documentation Swagger](http://localhost:5678/api-docs/)
+(http://localhost:5678/api-docs/)
+[documentation Swagger]
 
 Pour lire la documentation, utiliser Chrome ou Firefox

@@ -267,6 +267,10 @@ a {
 .login{
 	display: block
 }
+.error {
+	color: red;
+	text-decoration: underline;
+}
 
 
 
