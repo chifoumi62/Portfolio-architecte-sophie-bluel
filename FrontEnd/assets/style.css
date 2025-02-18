@@ -271,6 +271,8 @@ a {
 	color: red;
 	text-decoration: underline;
 }
+
+/*style modale*/
 .btn_nodal {
 	border: none;
 	font-size: 1em;
@@ -291,11 +293,70 @@ a {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 500px;
+	width: 350px;
 	height: 500px;
 	background-color: white;
 	display: none;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	padding-left: 100px;
+	padding-right: 100px;
+	border-radius: 20px;
+}
+.btn_close {
+	border: none;
+	font-size: 1.5em;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	background-color: white;
 }
 
+.modal_header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 40px;
+}
+
+.modal_header h1 {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 1.8em;
+	color: black;
+}
+
+.modal_body {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	grid-column-gap: 10px;
+	grid-row-gap: 25px;
+}
+
+.modal_body img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.modal_footer {
+	display: flex;
+	justify-content: center;
+	padding-top: 40px;
+	margin-top: 60px;
+	border-top: #1D6154 0.5px solid;
+	
+}
+
+.btn_ajout_photo {
+	border: none;
+	border-radius: 20px;
+	font-size: 1em;
+	background-color:green;
+	color: white;
+	padding: 10px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
 
 

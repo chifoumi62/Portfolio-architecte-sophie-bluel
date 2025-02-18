@@ -1,9 +1,9 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { genererElement, openModal} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal} from "./fonction.js";
 
-//appel de la fonction importer
+//appel de la fonction genererElement
 
 genererElement(reponse);
 
@@ -66,7 +66,15 @@ boutonTous.addEventListener("click",function() {
 });
 
   //gestion de la modale
+
   const modal=document.querySelector(".btn_nodal");
   modal.addEventListener("click",function() {
       openModal();
   });  
+
+  const btnClose=document.querySelector(".btn_close");
+  btnClose.addEventListener("click",function() {
+    closeModal();
+  });
+
+  genererElementModal(reponse);

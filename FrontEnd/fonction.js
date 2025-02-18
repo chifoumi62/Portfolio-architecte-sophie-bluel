@@ -39,4 +39,28 @@ export function openModal () {
     modal_2.style.display="block";
 }
 
+export function closeModal () {
+    const modal=document.querySelector(".overlay");
+    modal.style.display="none";
+    const modal_2=document.querySelector(".modal");
+    modal_2.style.display="none";
+}
+
+export function genererElementModal (reponse) {
+    for (let i = 0; i < reponse.length; i++) {
+        let figure=reponse[i];
+
+        const imageElement=document.createElement("img");
+        imageElement.src=figure.imageUrl;
+
+        const iconeElement=document.createElement("i");
+        iconeElement.setAttribute("class","fa-light fa-trash");
+
+        imageElement.appendChild(iconeElement);
+
+        document.querySelector(".modal_body").appendChild(imageElement);
+ 
+    }
+}
+
 
