@@ -68,7 +68,17 @@ export function genererElementModal (reponse) {
     }
 }
 
-    export function supprimerElement (reponse) {
+export function supprimerElement (reponse) {
+    const corbeille=document.querySelectorAll(".corbeille");
+    for (let i = 0; i < corbeille.length; i++) {
+
+        corbeille[i].addEventListener("click",function() {
+            fetch(`http://localhost:5678/api/delete/works/${reponse[i].id}`)
+    });
+}
+} 
+
+/*    export function supprimerElement (reponse) {
         const corbeille=document.querySelectorAll(".corbeille");
         for (let i = 0; i < corbeille.length; i++) {
 
@@ -79,7 +89,7 @@ export function genererElementModal (reponse) {
                 article[i].classList.add("displayNone");
             });
         }
-    }
+    }*/
 
 
 
