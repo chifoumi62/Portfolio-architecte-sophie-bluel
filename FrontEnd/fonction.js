@@ -73,7 +73,11 @@ export function supprimerElement (reponse) {
     for (let i = 0; i < corbeille.length; i++) {
 
         corbeille[i].addEventListener("click",function() {
-            fetch(`http://localhost:5678/api/delete/works/${reponse[i].id}`)
+            fetch(`http://localhost:5678/api/works/${reponse[i].id}`),{
+                method:"DELETE",
+                headers:{"content-type":"application/json"},
+                body :"null"
+            };
     });
 }
 } 
@@ -106,3 +110,17 @@ export function supprimerElement (reponse) {
         });
     }
 }*/
+
+export function openModal2() {
+    const modal=document.querySelector(".overlay2");
+    modal.style.display="block";
+    const modal_2=document.querySelector(".modal2");
+    modal_2.style.display="block";
+}
+
+export function closeModal2 () {
+    const modal=document.querySelector(".overlay2");
+    modal.style.display="none";
+    const modal_2=document.querySelector(".modal2");
+    modal_2.style.display="none";
+}

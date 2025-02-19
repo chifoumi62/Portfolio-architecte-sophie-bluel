@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal, supprimerElement} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -65,7 +65,7 @@ boutonTous.addEventListener("click",function() {
     genererElement(reponse);
 });
 
-  //gestion de la modale
+  //gestion de la modale galery photo
 
   const modal=document.querySelector(".btn_nodal");
   modal.addEventListener("click",function() {
@@ -80,3 +80,15 @@ boutonTous.addEventListener("click",function() {
     genererElementModal(reponse);
 
     supprimerElement(reponse);
+
+    //gestion de la modale ajout photo
+
+    const modal2=document.querySelector(".btn_ajout_photo");
+    modal2.addEventListener("click",function() {
+        openModal2();
+    });
+
+    const btnClose2=document.querySelector(".btn_close2");
+    btnClose2.addEventListener("click",function() {
+        closeModal2();
+    });
