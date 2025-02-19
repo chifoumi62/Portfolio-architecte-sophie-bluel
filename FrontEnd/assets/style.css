@@ -215,11 +215,19 @@ a {
 
 
 /* style page login */
+ .displayNone {
+	display: none;
+}
+
+.displayBlock {
+	display: block;
+}
 
 .body2 {
 	padding: 30px;
 	height: 650px;
 }
+
 .formlog {
 	display: flex;
 	flex-direction: column;
@@ -276,7 +284,6 @@ a {
 .btn_nodal {
 	border: none;
 	font-size: 1em;
-	background-color:blue;
 }
 .overlay {
 	display: none;
@@ -332,13 +339,30 @@ a {
 	grid-template-rows: auto;
 	grid-column-gap: 10px;
 	grid-row-gap: 25px;
+	position: relative;
+}
+
+.modal_body article {
+	position: relative;
 }
 
 .modal_body img {
 	width: 100%;
 	object-fit: cover;
+	z-index: 2;
 }
-
+.corbeille {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	z-index: 1;
+	width: 15px;
+	height: 15px;
+	color: white;
+	background-color: black;
+	border: none;
+	font-size: 0.6em;
+}
 .modal_footer {
 	display: flex;
 	justify-content: center;
@@ -358,5 +382,12 @@ a {
 	padding-left: 50px;
 	padding-right: 50px;
 }
+.modal_body i {
+	color: white;
+	position: relative;
+	right: 2px;
+}
+
+
 
 

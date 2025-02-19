@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal, supprimerElement} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -77,4 +77,6 @@ boutonTous.addEventListener("click",function() {
     closeModal();
   });
 
-  genererElementModal(reponse);
+    genererElementModal(reponse);
+
+    supprimerElement(reponse);
