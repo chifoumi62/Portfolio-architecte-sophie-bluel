@@ -1,7 +1,8 @@
-const reponseBody=await fetch(`http://localhost:5678/api/works`);
-const reponse=await reponseBody.json();
 
-export function genererElement (reponse) {
+export async function genererElement () {
+
+    let reponseBody=await fetch(`http://localhost:5678/api/works`);
+    let reponse=await reponseBody.json();
 
     for (let i = 0; i < reponse.length; i++) {
         let figure=reponse[i];
@@ -46,7 +47,11 @@ export function closeModal () {
     modal_2.style.display="none";
 }
 
-export function genererElementModal (reponse) {
+export async function genererElementModal () {
+
+    let reponseBody=await fetch(`http://localhost:5678/api/works`);
+    let reponse=await reponseBody.json();
+
     for (let i = 0; i < reponse.length; i++) {
         let figure=reponse[i];
 
@@ -68,18 +73,32 @@ export function genererElementModal (reponse) {
     }
 }
 
-export function supprimerElement (reponse) {
+export async function supprimerElement () {
+    let reponseBody=await fetch(`http://localhost:5678/api/works`);
+    let reponse=await reponseBody.json();
+
     const corbeille=document.querySelectorAll(".corbeille");
     for (let i = 0; i < corbeille.length; i++) {
 
-        corbeille[i].addEventListener("click",function() {
-            fetch(`http://localhost:5678/api/works/${reponse[i].id}`),{
+        corbeille[i].addEventListener("click",async function() {
+            const apiKey = sessionStorage.getItem("token");
+            await fetch(`http://localhost:5678/api/works/${reponse[i].id}`,{
                 method:"DELETE",
-                headers:{"content-type":"application/json"},
+                headers:{
+                    "accept":"*/*",
+                    "Authorization":"Bearer " + apiKey
+                },
                 body :"null"
-            };
-    });
-}
+            });
+
+            document.querySelector(".gallery").innerHTML=" ";
+            genererElement();
+            document.querySelector(".modal_body").innerHTML=" ";
+            genererElementModal();
+            supprimerElement();
+        });
+    
+    }
 } 
 
 /*    export function supprimerElement (reponse) {

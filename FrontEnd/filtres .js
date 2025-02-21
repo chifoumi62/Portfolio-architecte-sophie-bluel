@@ -80,7 +80,7 @@ boutonTous.addEventListener("click",function() {
     genererElementModal(reponse);
 
     supprimerElement(reponse);
-
+    
     //gestion de la modale ajout photo
 
     const modal2=document.querySelector(".btn_ajout_photo");
