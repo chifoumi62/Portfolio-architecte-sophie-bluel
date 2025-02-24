@@ -1,8 +1,8 @@
-
-export async function genererElement () {
-
     let reponseBody=await fetch(`http://localhost:5678/api/works`);
     let reponse=await reponseBody.json();
+
+
+export function genererElement (reponse) {
 
     for (let i = 0; i < reponse.length; i++) {
         let figure=reponse[i];
@@ -47,10 +47,7 @@ export function closeModal () {
     modal_2.style.display="none";
 }
 
-export async function genererElementModal () {
-
-    let reponseBody=await fetch(`http://localhost:5678/api/works`);
-    let reponse=await reponseBody.json();
+export  function genererElementModal (reponse) {
 
     for (let i = 0; i < reponse.length; i++) {
         let figure=reponse[i];
@@ -74,8 +71,7 @@ export async function genererElementModal () {
 }
 
 export async function supprimerElement () {
-    let reponseBody=await fetch(`http://localhost:5678/api/works`);
-    let reponse=await reponseBody.json();
+    
 
     const corbeille=document.querySelectorAll(".corbeille");
     for (let i = 0; i < corbeille.length; i++) {
@@ -90,11 +86,13 @@ export async function supprimerElement () {
                 },
                 body :"null"
             });
-
+            let reponseBodyModif=await fetch(`http://localhost:5678/api/works`);
+            let reponseModif=await reponseBodyModif.json();
+            
             document.querySelector(".gallery").innerHTML=" ";
-            genererElement();
+            genererElement(reponseModif);
             document.querySelector(".modal_body").innerHTML=" ";
-            genererElementModal();
+            genererElementModal(reponseModif);
             supprimerElement();
         });
     

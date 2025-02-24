@@ -79,7 +79,7 @@ boutonTous.addEventListener("click",function() {
 
     genererElementModal(reponse);
 
-    supprimerElement(reponse);
+    supprimerElement();
     
     //gestion de la modale ajout photo
 
