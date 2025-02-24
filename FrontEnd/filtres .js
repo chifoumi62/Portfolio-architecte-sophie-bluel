@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2, recupererElementTitre, recupererElementImage, recupererElementCategorie} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -99,7 +99,7 @@ boutonTous.addEventListener("click",function() {
         closeModal2()
     });
 
-    // affichage de la modal ajout photo
+    // affichage du bouton ajout photo de la modal2
 
     const btnFormPhoto = document.querySelector(".btn_form_photo");
     const formPhoto = document.querySelector("#form_photo");
@@ -108,4 +108,28 @@ boutonTous.addEventListener("click",function() {
             if (formPhoto) {
             formPhoto.click();
             }
+        });
+
+        //recuperation des données nouveau projet de la modale 2
+
+        const btnValider=document.querySelector(".btn_valider");
+        btnValider.addEventListener("click",async function(){
+            const title=recupererElementTitre();
+            const imageUrl=recupererElementImage();
+            const categoryId=recupererElementCategorie()
+console.log(title,imageUrl,categoryId);
+            const apiKey = sessionStorage.getItem("token");
+            await fetch(`http://localhost:5678/api/works`,{
+             method:"post",
+             headers:{
+                 "accept":"*/*",
+                 "Authorization":"Bearer " + apiKey,
+                  "content-type":"multipart/form-data"
+             },
+             body: JSON.stringify({
+                 title,
+                 imageUrl,
+                 categoryId
+             })
+         });
         });

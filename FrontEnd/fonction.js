@@ -143,3 +143,40 @@ export function closeModal2 () {
     const modal_2=document.querySelector(".modal2");
     modal_2.style.display="none";
 }
+
+ export function recupererElementImage(){
+    const image=document.querySelector("#form_photo");
+    const imageUrl=`${image.src}`
+    return(imageUrl)
+}
+
+ export function recupererElementTitre(){
+    const titreNew=document.querySelector("#form_titre");
+    return(titreNew)
+}
+
+ export async function recupererElementCategorie(){
+    let categorie=document.querySelector("#form_categorie");
+    
+
+        let reponseBody=await fetch(`http://localhost:5678/api/categories`);
+        let reponse=await reponseBody.json();
+
+        let category="null";
+        
+        switch (categorie) {
+            case "Objets":
+                category=reponse[0];
+                break;
+            case "Appartements":
+                category=reponse[1];
+                break;
+            default:
+                category=reponse[2];
+                break;
+
+                return(category);
+        };
+};
+
+
