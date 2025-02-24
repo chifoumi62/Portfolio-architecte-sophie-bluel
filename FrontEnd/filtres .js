@@ -91,4 +91,21 @@ boutonTous.addEventListener("click",function() {
     const btnClose2=document.querySelector(".btn_close2");
     btnClose2.addEventListener("click",function() {
         closeModal2();
+        closeModal()
     });
+
+    const btnRetour=document.querySelector(".btn_retour");
+    btnRetour.addEventListener("click",function(){
+        closeModal2()
+    });
+
+    // affichage de la modal ajout photo
+
+    const btnFormPhoto = document.querySelector(".btn_form_photo");
+    const formPhoto = document.querySelector("#form_photo");
+
+        btnFormPhoto.addEventListener("click",(Event) => {
+            if (formPhoto) {
+            formPhoto.click();
+            }
+        });

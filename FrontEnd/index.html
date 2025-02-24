@@ -40,15 +40,31 @@
 				<div class="overlay2">
 					<div class="modal2">
 						<div class="modal2_header">
+							<button class="btn_retour">
+								<i class="fa-solid fa-arrow-left"></i>
+							</button>
 							<button class="btn_close2">
 								<i class="fa-solid fa-xmark"></i>
 							</button>
-							<h1>ajout photo</h1>
+							<h1>Ajout photo</h1>
 						</div>
 						<div class="modal2_body">
-							Ma photo ici : <br>
-							<input class="form-control" type="file" accept="image/jpeg, image/png" id="formFile">
-							
+							<form action="" method="" class="form_ajout_photo">
+								<div class="container_modal2">
+									<i class="fa-regular fa-image"></i>	
+										<input type="file" accept="image/jpeg, image/png" id="form_photo">
+											<button class="btn_form_photo">+ Ajouter Photo</button>
+										<p>jpg,png :4mo max</p>
+								</div>
+								<label for="form_titre">Titre</label>
+								<input type="text" name="form_titre" id="form_titre" required>
+								<label for="form_categorie">Catégorie</label>
+								<select id="form_categorie">
+									<option>Objets</option>
+									<option>Appartements</option>
+									<option>Hotels & restaurants</option>
+								</select>
+							</form>
 						</div>
 						<div class="modal_footer">
 							<button class="btn_valider">valider</button>
