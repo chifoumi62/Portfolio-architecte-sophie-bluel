@@ -142,39 +142,37 @@ export function closeModal2 () {
     modal_2.style.display="none";
 }
 
- export function recupererElementImage(){
-    const image=document.querySelector("#form_photo");
-    const imageUrl=`${image.src}`
-    return(imageUrl)
-}
 
  export function recupererElementTitre(){
-    const titreNew=document.querySelector("#form_titre");
+    let titreNew=document.querySelector("#form_titre").value;
     return(titreNew)
 }
 
  export async function recupererElementCategorie(){
-    let categorie=document.querySelector("#form_categorie");
+    let categorie=document.querySelector("#form_categorie").value;
     
 
-        let reponseBody=await fetch(`http://localhost:5678/api/categories`);
-        let reponse=await reponseBody.json();
+        let reponseBodyCat=await fetch(`http://localhost:5678/api/categories`);
+        let reponseCat=await reponseBodyCat.json();
 
-        let category="null";
+        let category="";
         
         switch (categorie) {
             case "Objets":
-                category=reponse[0];
+                category=reponseCat[0];
                 break;
             case "Appartements":
-                category=reponse[1];
+                category=reponseCat[1];
                 break;
-            default:
-                category=reponse[2];
-                break;
+            case "Hotels & restaurants":
+                category=reponseCat[2];
+                break
 
-                return(category);
+            default:
+                console.log ("vous devez selectionné une categorie");
+                break;
         };
+        return(category)
 };
 
 

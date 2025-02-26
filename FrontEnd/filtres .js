@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2, recupererElementTitre, recupererElementImage, recupererElementCategorie} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2, recupererElementTitre, recupererElementCategorie} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -40,6 +40,7 @@ sectionFiltres.appendChild(boutonHotelsRestaurants);
     
     document.querySelector(".gallery").innerHTML="";
     genererElement(reponseObjets);
+   
 });
 
 boutonAppartements.addEventListener("click",function() {
@@ -103,6 +104,8 @@ boutonTous.addEventListener("click",function() {
 
     const btnFormPhoto = document.querySelector(".btn_form_photo");
     const formPhoto = document.querySelector("#form_photo");
+    const label2=document.querySelector(".container_modal2>label");
+    const para=document.querySelector(".container_modal2>p");
 
         btnFormPhoto.addEventListener("click",(Event) => {
             if (formPhoto) {
@@ -110,26 +113,63 @@ boutonTous.addEventListener("click",function() {
             }
         });
 
+        //affichage d'une photo selectionnée dans modale 2
+        
+        formPhoto.addEventListener("change", function() {
+                let recupImage=formPhoto.files[0];
+                let newImageUrl=URL.createObjectURL(recupImage)
+        
+                let newImage=document.createElement("img");
+                newImage.src=newImageUrl;
+                newImage.style.height="220px"
+                newImage.style.width="auto";
+                label2.style.display="none";
+                para.style.display="none";
+
+                document.querySelector(".container_modal2").appendChild(newImage);
+        });
+
+        const formCategorie= document.getElementById("form_categorie");
+        let reponseBodyCat=await fetch(`http://localhost:5678/api/categories`);
+        let reponseCat=await reponseBodyCat.json();
+        reponseCat.forEach((category) => {
+            let categoryOption=document.createElement("option");
+            let categorylabel=document.createElement("label");
+            categoryOption.setAttribute("value",category.id);
+            categorylabel.innerHTML=category.name;
+            categoryOption.appendChild(categorylabel);
+            formCategorie.appendChild(categoryOption);
+        });
+
+
         //recuperation des données nouveau projet de la modale 2
 
-        const btnValider=document.querySelector(".btn_valider");
-        btnValider.addEventListener("click",async function(){
-            const title=recupererElementTitre();
-            const imageUrl=recupererElementImage();
-            const categoryId=recupererElementCategorie()
-console.log(title,imageUrl,categoryId);
+        const btnValider=document.querySelector("#btn_valider");
+        btnValider.addEventListener("submit",async (Event)=>{
+            Event.preventDefault;
+            let titre=recupererElementTitre();
+            let categoryId=recupererElementCategorie()
             const apiKey = sessionStorage.getItem("token");
-            await fetch(`http://localhost:5678/api/works`,{
-             method:"post",
+            fetch(`http://localhost:5678/api/works`,{
+             method:"POST",
              headers:{
-                 "accept":"*/*",
-                 "Authorization":"Bearer " + apiKey,
-                  "content-type":"multipart/form-data"
+                    "accept":"application/json",
+                    "Authorization":"Bearer " + apiKey,
+                    "content-type":"multipart/form-data"
              },
              body: JSON.stringify({
-                 title,
-                 imageUrl,
-                 categoryId
+                 title:titre,
+                 image:newImageUrl,
+                 category:categoryId.id
              })
          });
+                let reponseBodyAjout=await fetch(`http://localhost:5678/api/works`);
+                let reponseAjout=await reponseBodyAjout.json();
+                
+                document.querySelector(".gallery").innerHTML=" ";
+                genererElement(reponseAjout);
+                document.querySelector(".modal_body").innerHTML=" ";
+                genererElementModal(reponseAjout);
+
+                window.location.href="index.html"
         });

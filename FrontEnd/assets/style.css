@@ -200,7 +200,11 @@ footer nav ul {
 	padding-left: 20px;
 
 }
-.btn:hover ,.btn1:hover ,.btn2:hover ,.btn3:hover {
+.backgroundColor {
+	color: white;
+	background-color: green;
+}
+.btn:hover  {
 	color: white;
 	background-color: green;
 }
@@ -446,7 +450,7 @@ a {
 	flex-direction: column;
 	align-items: center;
 	background-color:#d4e6f1;
-	height: 130px;
+	height: 150px;
 }
 
 .container_modal2 i {
@@ -475,7 +479,7 @@ a {
 	padding: 5px;
 	opacity: 0.4;
 }
-.form_ajout_photo {
+.form_ajout_photo, .modal2_body {
 	display: flex;
 	flex-direction: column;
 }
@@ -486,21 +490,30 @@ a {
 }
 .form_ajout_photo label {
 	margin-top: 20px;
+	margin-bottom: 10px;
 }
 #form_categorie {
 	border: none;
 	box-shadow: 0px 5px  #ecf0f1;
 	height: 30px;
+
 }
-.btn_valider {
+#btn_valider {
 	border: none;
 	border-radius: 20px;
 	font-size: 1em;
-	background-color:#7f8c8d;
+	background-color:#7f8c8d ;
 	color: white;
 	padding: 10px;
 	padding-left: 50px;
 	padding-right: 50px;
+}
+.footer_modal2 {
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+	margin-top: 60px;
+ border-top: #7f8c8d 0.5px solid;
 }
 .btn_retour {
 	border: none;
