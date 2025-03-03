@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2, recupererElementTitre, recupererElementCategorie} from "./fonction.js";
+import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -34,13 +34,13 @@ sectionFiltres.appendChild(boutonHotelsRestaurants);
 // gestion des boutons filtres
 
     boutonObjets.addEventListener("click",function() {
-    const reponseObjets=reponse.filter(function(reponse){
-        return reponse.categoryId===1;
+        const reponseObjets=reponse.filter(function(reponse){
+            return reponse.categoryId===1;
     });
     
     document.querySelector(".gallery").innerHTML="";
     genererElement(reponseObjets);
-   
+
 });
 
 boutonAppartements.addEventListener("click",function() {
@@ -104,8 +104,9 @@ boutonTous.addEventListener("click",function() {
 
     const btnFormPhoto = document.querySelector(".btn_form_photo");
     const formPhoto = document.querySelector("#form_photo");
-    const label2=document.querySelector(".container_modal2>label");
-    const para=document.querySelector(".container_modal2>p");
+    const label2=document.querySelector(".container_modal2 label");
+    const para=document.querySelector(".container_modal2 p");
+    const btnAjoutPhoto=document.querySelector(".btn_form_photo");
 
         btnFormPhoto.addEventListener("click",(Event) => {
             if (formPhoto) {
@@ -114,20 +115,25 @@ boutonTous.addEventListener("click",function() {
         });
 
         //affichage d'une photo selectionnée dans modale 2
+
+        let newImageUrl=""
         
-        formPhoto.addEventListener("change", function() {
+        formPhoto.addEventListener("change", function(newImageUrl) {
                 let recupImage=formPhoto.files[0];
-                let newImageUrl=URL.createObjectURL(recupImage)
+                newImageUrl=URL.createObjectURL(recupImage);
         
                 let newImage=document.createElement("img");
                 newImage.src=newImageUrl;
-                newImage.style.height="220px"
+                newImage.style.height="150px"
                 newImage.style.width="auto";
                 label2.style.display="none";
                 para.style.display="none";
+                btnAjoutPhoto.style.display="none";
 
                 document.querySelector(".container_modal2").appendChild(newImage);
         });
+
+        //affichage des categories dans modal 2
 
         const formCategorie= document.getElementById("form_categorie");
         let reponseBodyCat=await fetch(`http://localhost:5678/api/categories`);
@@ -144,24 +150,25 @@ boutonTous.addEventListener("click",function() {
 
         //recuperation des données nouveau projet de la modale 2
 
-        const btnValider=document.querySelector("#btn_valider");
+        const btnValider=document.getElementById("btn_valider");
         btnValider.addEventListener("submit",async (Event)=>{
             Event.preventDefault;
-            let titre=recupererElementTitre();
-            let categoryId=recupererElementCategorie()
+            const newTitre=document.querySelector (".form_titre").value;
+            const category=document.getElementById("form_categorie").value;
+            const chargeUtile=JSON.stringify({
+                "image":newImageUrl,
+                "title":newTitre,
+                "category":category
+            });
             const apiKey = sessionStorage.getItem("token");
-            fetch(`http://localhost:5678/api/works`,{
+            await fetch(`http://localhost:5678/api/works`,{
              method:"POST",
              headers:{
                     "accept":"application/json",
                     "Authorization":"Bearer " + apiKey,
                     "content-type":"multipart/form-data"
              },
-             body: JSON.stringify({
-                 title:titre,
-                 image:newImageUrl,
-                 category:categoryId.id
-             })
+             body: chargeUtile
          });
                 let reponseBodyAjout=await fetch(`http://localhost:5678/api/works`);
                 let reponseAjout=await reponseBodyAjout.json();
@@ -171,5 +178,6 @@ boutonTous.addEventListener("click",function() {
                 document.querySelector(".modal_body").innerHTML=" ";
                 genererElementModal(reponseAjout);
 
-                window.location.href="index.html"
+                closeModal2();
+                closeModal();
         });
