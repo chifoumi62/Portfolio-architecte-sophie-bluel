@@ -212,10 +212,7 @@ footer nav ul {
 	padding-left: 20px;
 
 }
-.backgroundColor {
-	color: white;
-	background-color: green;
-}
+
 .btn:focus {
 	color: white;
 	background-color: green;

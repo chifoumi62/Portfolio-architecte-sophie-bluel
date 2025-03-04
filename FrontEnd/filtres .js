@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
+import { closeModal, genererElement,modifIndex, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -66,8 +66,23 @@ boutonTous.addEventListener("click",function() {
     genererElement(reponse);
 });
 
-  //gestion de la modale galery photo
+  //modification page accueil en mode edition
 
+  if(sessionStorage.getItem("token")){
+      modifIndex();
+  };
+  
+  if(sessionStorage.getItem("token")){
+      const deconect=document.querySelector(".identification");
+      deconect.addEventListener("click",()=>{
+          sessionStorage.removeItem("token");
+          window.location.href="login.html";
+      });
+  }
+
+  //gestion de la modal de suppression d'elements
+
+  
   const modal=document.querySelector(".btn_nodal");
   modal.addEventListener("click",function() {
       openModal();

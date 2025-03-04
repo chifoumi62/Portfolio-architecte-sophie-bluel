@@ -23,6 +23,7 @@ export function genererElement (reponse) {
     }
 }
 
+
 export function modifIndex () {
     const nodal=document.querySelector(".projet");
     nodal.innerHTML=`<button class=btn_nodal>projets</button>`
@@ -102,34 +103,6 @@ export async function supprimerElement () {
     }
 } 
 
-/*    export function supprimerElement (reponse) {
-        const corbeille=document.querySelectorAll(".corbeille");
-        for (let i = 0; i < corbeille.length; i++) {
-
-            corbeille[i].addEventListener("click",function() {
-                const figure=document.querySelectorAll(".gallery figure");
-                figure[i].classList.add("displayNone");
-                const article=document.querySelectorAll(".modal_body article");
-                article[i].classList.add("displayNone");
-            });
-        }
-    }*/
-
-
-
-/*export function supprimerElement (reponse) {
-    const corbeille=document.querySelectorAll(".corbeille");
-    for (let i = corbeille.length; i >=0; i--) {
-
-        corbeille[i].addEventListener("click",function() {
-            reponse.splice(i,1);
-            document.querySelector(".gallery").innerHTML="";
-            genererElement(reponse);
-            document.querySelector(".modal_body").innerHTML="";
-            genererElementModal(reponse);
-        });
-    }
-}*/
 
 export function openModal2() {
     const modal=document.querySelector(".overlay2");
