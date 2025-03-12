@@ -76,7 +76,7 @@ export  function genererElementModal (reponse) {
 export async function supprimerElement () {
     
 
-    const corbeille=document.querySelectorAll(".corbeille");
+    let corbeille=document.querySelectorAll(".corbeille");
     for (let i = 0; i < corbeille.length; i++) {
 
         corbeille[i].addEventListener("click",async function() {

@@ -141,6 +141,7 @@ boutonTous.addEventListener("click",function() {
                 newImage.src=newImageUrl;
                 newImage.style.height="150px"
                 newImage.style.width="auto";
+                newImage.classList.add('js_image');
                 label2.style.display="none";
                 para.style.display="none";
                 btnAjoutPhoto.style.display="none";
@@ -169,31 +170,35 @@ boutonTous.addEventListener("click",function() {
         btnValider.addEventListener("click",async(Event)=>{
             Event.preventDefault;
             const recupImage=formPhoto.files[0];
-            const newImageUrl=URL.createObjectURL(recupImage);
             const newTitre=document.querySelector ("#form_titre").value;
             const category=document.querySelector("#form_categorie").value;
 
-            if (newImageUrl==="" || newTitre==="" || category===""){
+            if (recupImage==="" || newTitre==="" || category===""){
                 throw new Error("veuillez remplir tous les champs");
-         }
+            }
             
-            const chargeUtile=JSON.stringify({
-                "image":newImageUrl,
-                "title":newTitre,
-                "category":category
-            });
+            let formData = new FormData();
+            formData.append("image", recupImage);
+            formData.append("title", newTitre);
+            formData.append("category", category);
         
             const apiKey = sessionStorage.getItem("token");
-             await fetch(`http://localhost:5678/api/works`,{
+            await fetch(`http://localhost:5678/api/works`,{
              method:"POST",
              headers:{
-                    "accept":"application/json",
-                    "Authorization":"Bearer " + apiKey,
-                    "content-type":"multipart/form-data"
+                    "Accept":"application/json",
+                    "Authorization":"Bearer " + apiKey
              },
-             body: chargeUtile
+             body: formData
          });
-            
+            document.querySelector("#form_photo").value=null;
+            document.querySelector(".js_image").remove();
+                label2.style.display="block";
+                para.style.display="block";
+                btnAjoutPhoto.style.display="block";
+            document.querySelector ("#form_titre").value="";
+            document.querySelector("#form_categorie").value="";
+
                 let reponseBodyAjout=await fetch(`http://localhost:5678/api/works`);
                 let reponseAjout=await reponseBodyAjout.json();
                 
@@ -205,5 +210,3 @@ boutonTous.addEventListener("click",function() {
                 closeModal2();
                 closeModal();
         });
-
-        console.log(newImageUrl);
