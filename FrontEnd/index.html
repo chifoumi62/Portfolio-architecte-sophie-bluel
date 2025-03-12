@@ -53,7 +53,7 @@
 							</button>
 							<h1>Ajout photo</h1>
 						</div>
-						<form action="" method="" class="form_ajout_photo">
+						<div class="form_ajout_photo">
 								<div class="container_modal2">
 									<label for="form_photo">
 										<i class="fa-regular fa-image"></i>
@@ -63,15 +63,15 @@
 											<p>jpg,png :4mo max</p>
 								</div>
 									<label for="form_titre">Titre</label>
-									<input type="text" name="form_titre" id="form_titre" required>
+									<input type="text" name="form_titre" id="form_titre" value="" required>
 									<label for="form_categorie">Catégorie</label>
 									<select name="form_categorie" id="form_categorie" required>
 										<option></option>
 									</select>
 								<div class="footer_modal2">
-									<input type="submit"value="valider" id="btn_valider">
+									<button id="btn_valider">valider</button>
 								</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			<li>contact</li>
@@ -95,7 +95,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="mes_projets">
+			<h2>Mes Projets</h2>
+			<button class="btn_modal">
+				<i class="fa-solid fa-pen-to-square"></i>
+				modifier
+			</button>
+		</div>
 			<div class="filtres">
 			</div>
 		<div class="gallery">

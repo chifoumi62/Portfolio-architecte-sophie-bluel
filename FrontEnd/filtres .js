@@ -83,7 +83,7 @@ boutonTous.addEventListener("click",function() {
   //gestion de la modal de suppression d'elements
 
   
-  const modal=document.querySelector(".btn_nodal");
+  const modal=document.querySelector(".btn_modal");
   modal.addEventListener("click",function() {
       openModal();
   });  
@@ -147,7 +147,7 @@ boutonTous.addEventListener("click",function() {
 
                 document.querySelector(".container_modal2").appendChild(newImage);
         });
-
+            console.log(newImageUrl)
         //affichage des categories dans modal 2
 
         const formCategorie= document.getElementById("form_categorie");
@@ -166,17 +166,25 @@ boutonTous.addEventListener("click",function() {
         //recuperation des données nouveau projet de la modale 2
 
         const btnValider=document.getElementById("btn_valider");
-        btnValider.addEventListener("submit",async (Event)=>{
+        btnValider.addEventListener("click",async(Event)=>{
             Event.preventDefault;
-            const newTitre=document.querySelector (".form_titre").value;
-            const category=document.getElementById("form_categorie").value;
+            const recupImage=formPhoto.files[0];
+            const newImageUrl=URL.createObjectURL(recupImage);
+            const newTitre=document.querySelector ("#form_titre").value;
+            const category=document.querySelector("#form_categorie").value;
+
+            if (newImageUrl==="" || newTitre==="" || category===""){
+                throw new Error("veuillez remplir tous les champs");
+         }
+            
             const chargeUtile=JSON.stringify({
                 "image":newImageUrl,
                 "title":newTitre,
                 "category":category
             });
+        
             const apiKey = sessionStorage.getItem("token");
-            await fetch(`http://localhost:5678/api/works`,{
+             await fetch(`http://localhost:5678/api/works`,{
              method:"POST",
              headers:{
                     "accept":"application/json",
@@ -185,6 +193,7 @@ boutonTous.addEventListener("click",function() {
              },
              body: chargeUtile
          });
+            
                 let reponseBodyAjout=await fetch(`http://localhost:5678/api/works`);
                 let reponseAjout=await reponseBodyAjout.json();
                 
@@ -196,3 +205,5 @@ boutonTous.addEventListener("click",function() {
                 closeModal2();
                 closeModal();
         });
+
+        console.log(newImageUrl);

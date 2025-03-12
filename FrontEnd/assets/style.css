@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	ne-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -296,10 +296,18 @@ a {
 /*style modale*/
 /*modal galerie*/
 
-
-.btn_nodal {
+.mes_projets {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.btn_modal{
+	display: none;
 	border: none;
 	font-size: 1em;
+	margin-bottom: 1.5em;
+	margin-left: 1em;
 }
 .overlay {
 	display: none;
@@ -511,7 +519,7 @@ a {
 #btn_valider {
 	border: none;
 	border-radius: 20px;
-	font-size: 1em;
+	font-size: 1.2em;
 	background-color:#7f8c8d ;
 	color: white;
 	padding: 10px;
@@ -521,7 +529,7 @@ a {
 .footer_modal2 {
 	display: flex;
 	justify-content: center;
-	padding-top: 10px;
+	padding-top: 40px;
 	margin-top: 60px;
  border-top: #7f8c8d 0.5px solid;
 }
