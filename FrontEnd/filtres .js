@@ -1,7 +1,7 @@
 let reponseBody=await fetch(`http://localhost:5678/api/works`);
 let reponse=await reponseBody.json();
 
-import { closeModal, genererElement,modifIndex, openModal , genererElementModal, supprimerElement, openModal2, closeModal2} from "./fonction.js";
+import { closeModal, genererElement,modifIndex, openModal , genererElementModal,  openModal2, closeModal2} from "./fonction.js";
 
 //appel de la fonction genererElement
 
@@ -95,7 +95,7 @@ boutonTous.addEventListener("click",function() {
 
     genererElementModal(reponse);
 
-    supprimerElement();
+   /* supprimerElement();*/
     
     //gestion de la modale ajout photo
 
@@ -131,11 +131,11 @@ boutonTous.addEventListener("click",function() {
 
         //affichage d'une photo selectionnée dans modale 2
 
-        let newImageUrl=""
         
-        formPhoto.addEventListener("change", function(newImageUrl) {
+        
+        formPhoto.addEventListener("change", function() {
                 let recupImage=formPhoto.files[0];
-                newImageUrl=URL.createObjectURL(recupImage);
+                let newImageUrl=URL.createObjectURL(recupImage);
         
                 let newImage=document.createElement("img");
                 newImage.src=newImageUrl;
@@ -148,7 +148,7 @@ boutonTous.addEventListener("click",function() {
 
                 document.querySelector(".container_modal2").appendChild(newImage);
         });
-            console.log(newImageUrl)
+
         //affichage des categories dans modal 2
 
         const formCategorie= document.getElementById("form_categorie");
@@ -182,12 +182,12 @@ boutonTous.addEventListener("click",function() {
             formData.append("title", newTitre);
             formData.append("category", category);
         
-            const apiKey = sessionStorage.getItem("token");
+            const apiKeys = sessionStorage.getItem("token");
             await fetch(`http://localhost:5678/api/works`,{
              method:"POST",
              headers:{
                     "Accept":"application/json",
-                    "Authorization":"Bearer " + apiKey
+                    "Authorization":"Bearer " + apiKeys
              },
              body: formData
          });
@@ -210,3 +210,5 @@ boutonTous.addEventListener("click",function() {
                 closeModal2();
                 closeModal();
         });
+
+        

@@ -65,6 +65,7 @@ export  function genererElementModal (reponse) {
         const iconeElement=document.createElement("button");
         iconeElement.innerHTML=`<i class="fa-solid fa-trash"></i>`;
         iconeElement.classList.add("corbeille");
+        iconeElement.onclick=()=>supprimerElementById(figure.id);
 
         ficheModal.appendChild(iconeElement);
 
@@ -73,21 +74,14 @@ export  function genererElementModal (reponse) {
     }
 }
 
-export async function supprimerElement () {
-    
-
-    let corbeille=document.querySelectorAll(".corbeille");
-    for (let i = 0; i < corbeille.length; i++) {
-
-        corbeille[i].addEventListener("click",async function() {
+ async function supprimerElementById (figureId) {
             const apiKey = sessionStorage.getItem("token");
-            await fetch(`http://localhost:5678/api/works/${reponse[i].id}`,{
+            await fetch(`http://localhost:5678/api/works/${figureId}`,{
                 method:"DELETE",
                 headers:{
                     "accept":"*/*",
                     "Authorization":"Bearer " + apiKey
                 },
-                body :"null"
             });
             let reponseBodyModif=await fetch(`http://localhost:5678/api/works`);
             let reponseModif=await reponseBodyModif.json();
@@ -96,11 +90,8 @@ export async function supprimerElement () {
             genererElement(reponseModif);
             document.querySelector(".modal_body").innerHTML=" ";
             genererElementModal(reponseModif);
-            supprimerElement();
-        });
+        };
     
-    }
-} 
 
 
 export function openModal2() {
